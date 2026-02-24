@@ -73,10 +73,10 @@ export default function AboutPage() {
 	return (
 		<div className="bg-black min-h-screen p-8 flex flex-col items-center">
 			{/* Profile card */}
-			<div className="border-2 border-white rounded-2xl p-6 max-w-2xl w-full flex gap-6 items-center">
+			<div className="border- border-white rounded-2xl p-6 max-w-2xl w-full flex gap-6 items-center">
 				<div className="shrink-0 w-36 h-36 rounded-full overflow-hidden border-2 border-white">
 					<Image
-						src="/logo.png"
+						src="/profilePicture.jpeg"
 						alt="Profile photo"
 						width={144}
 						height={144}
