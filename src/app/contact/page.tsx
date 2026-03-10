@@ -1,76 +1,79 @@
+import { MdOutlineEmail } from 'react-icons/md';
+import { SiGithub, SiLinkerd } from 'react-icons/si';
+
+const contacts = [
+	{
+		href: 'mailto:tobias.bp2004@gmail.com',
+		label: 'Email',
+		value: 'tobias.bp2004@gmail.com',
+		icon: MdOutlineEmail,
+		external: false,
+	},
+	{
+		href: 'https://github.com/tobsBP',
+		label: 'GitHub',
+		value: 'github.com/tobsBP',
+		icon: SiGithub,
+		external: true,
+	},
+	{
+		href: 'https://linkedin.com/in/tobias-bueno-92b382259',
+		label: 'LinkedIn',
+		value: 'linkedin.com/in/tobias-bueno',
+		icon: SiLinkerd,
+		external: true,
+	},
+];
+
 export default function ContactPage() {
 	return (
-		<div className="bg-black min-h-screen p-8 m-auto">
-			<div className="border-2 border-white rounded-2xl p-6 max-w-xl flex flex-col gap-6">
-				<p className="text-gray-300 text-lg">
-					Feel free to reach out — I&apos;m always open to new opportunities and
-					conversations.
-				</p>
+		<div className="bg-black min-h-screen flex items-center justify-center px-6 py-16">
+			<div className="w-full max-w-lg flex flex-col gap-10">
+				{/* Header */}
+				<div className="flex flex-col gap-3">
+					<h1 className="text-white text-5xl font-serif">Get in touch</h1>
+					<p className="text-zinc-400 text-base leading-relaxed">
+						I&apos;m always open to new opportunities and conversations. Pick
+						your preferred channel and let&apos;s talk.
+					</p>
+				</div>
 
-				<div className="flex flex-col gap-4">
-					{/* Email */}
-					<a
-						href="mailto:your@email.com"
-						className="flex items-center gap-4 text-white hover:text-gray-300 transition-colors group"
-					>
-						<span className="border border-white rounded-lg p-2 group-hover:bg-white group-hover:text-black transition-colors">
+				{/* Divider */}
+				<div className="h-px bg-white/10" />
+
+				{/* Contact cards */}
+				<div className="flex flex-col gap-3">
+					{contacts.map(({ href, label, value, icon: Icon, external }) => (
+						<a
+							key={label}
+							href={href}
+							target={external ? '_blank' : undefined}
+							rel={external ? 'noopener noreferrer' : undefined}
+							className="group flex items-center gap-5 border border-zinc-800 rounded-2xl px-6 py-5 hover:border-zinc-500 hover:bg-zinc-900/50 transition-all duration-200"
+						>
+							<span className="flex items-center justify-center w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-700 group-hover:border-zinc-500 transition-colors shrink-0">
+								<Icon className="text-xl text-zinc-300" />
+							</span>
+							<div className="flex flex-col gap-0.5">
+								<span className="text-zinc-500 text-xs uppercase tracking-widest">
+									{label}
+								</span>
+								<span className="text-white text-sm font-medium">{value}</span>
+							</div>
 							<svg
-								width="20"
-								height="20"
+								className="ml-auto text-zinc-700 group-hover:text-zinc-400 transition-colors"
+								width="16"
+								height="16"
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="currentColor"
 								strokeWidth="2"
 							>
-								<title>Email</title>
-								<rect x="2" y="4" width="20" height="16" rx="2" />
-								<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+								<title>Open</title>
+								<path d="M7 17L17 7M17 7H7M17 7v10" />
 							</svg>
-						</span>
-						<span>tobias.bp2004@gmail.com</span>
-					</a>
-
-					{/* GitHub */}
-					<a
-						href="https://github.com/tobsBP"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="flex items-center gap-4 text-white hover:text-gray-300 transition-colors group"
-					>
-						<span className="border border-white rounded-lg p-2 group-hover:bg-white group-hover:text-black transition-colors">
-							<svg
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-							>
-								<title>GitHub</title>
-								<path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-							</svg>
-						</span>
-						<span>github.com/tobsBP</span>
-					</a>
-
-					{/* LinkedIn */}
-					<a
-						href="https://linkedin.com/in/tobias-bueno-92b382259"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="flex items-center gap-4 text-white hover:text-gray-300 transition-colors group"
-					>
-						<span className="border border-white rounded-lg p-2 group-hover:bg-white group-hover:text-black transition-colors">
-							<svg
-								width="20"
-								height="20"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-							>
-								<title>LinkedIn</title>
-								<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-							</svg>
-						</span>
-						<span>linkedin.com/in/tobias-bueno</span>
-					</a>
+						</a>
+					))}
 				</div>
 			</div>
 		</div>

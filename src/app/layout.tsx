@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Instrument_Serif } from 'next/font/google';
 import NavBar from '../components/NavBar';
 import './globals.css';
+import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
 	title: 'Portfolio',
@@ -25,6 +26,7 @@ export default function RootLayout({
 			<body>
 				<NavBar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);

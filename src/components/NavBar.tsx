@@ -1,28 +1,50 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+const links = [
+	{ href: '/', label: 'Home' },
+	{ href: '/projects', label: 'Projects' },
+	{ href: '/knowledge', label: 'Knowledge' },
+	{ href: '/about', label: 'About Me' },
+	{ href: '/contact', label: 'Contact' },
+];
 
 export default function NavBar() {
+	const pathname = usePathname();
+
 	return (
-		<nav className="flex items-center gap-8 mt-4 ml-5 p-4">
+		<nav className="sticky top-0 z-50 flex items-center px-6 py-3 bg-black/60 backdrop-blur-md border-b border-white/10">
 			<Link href="/">
 				<Image
 					alt="Site logo"
-					width={70}
-					height={70}
+					width={48}
+					height={48}
 					src="/logo.png"
 					priority
+					className="rounded-full"
 				/>
 			</Link>
-			<div className="ml-auto mr-8 flex space-x-6">
-				<Link href="/" className="">
-					Home
-				</Link>
-				<Link href="/about" className="">
-					About Me
-				</Link>
-				<Link href="/contact" className="">
-					Contact
-				</Link>
+
+			<div className="ml-auto flex items-center gap-1">
+				{links.map(({ href, label }) => {
+					const active = pathname === href;
+					return (
+						<Link
+							key={href}
+							href={href}
+							className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+								active
+									? 'bg-white text-black'
+									: 'text-zinc-400 hover:text-white hover:bg-white/10'
+							}`}
+						>
+							{label}
+						</Link>
+					);
+				})}
 			</div>
 		</nav>
 	);

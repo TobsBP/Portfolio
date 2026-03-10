@@ -1,4 +1,5 @@
-import { certificates, issuerColors } from '../data/certificates';
+import TechGrid from '../../components/TechGrid';
+import { certificates, issuerColors } from '../../data/certificates';
 
 const VerifiedIcon = () => (
 	<svg
@@ -15,15 +16,24 @@ const VerifiedIcon = () => (
 	</svg>
 );
 
-export default function CertificatesCard() {
+export default function KnowledgePage() {
 	const verified = certificates.filter((c) => c.href);
 	const unverified = certificates.filter((c) => !c.href);
 
 	return (
-		<section className="px-8 py-10">
+		<div className="bg-black min-h-screen px-8 py-10">
 			{/* Header */}
 			<div className="mb-10 flex items-end justify-between border-b border-white/10 pb-6">
-				<h1 className="text-white text-4xl font-serif">Certificates</h1>
+				<h1 className="text-white text-4xl font-serif">Knowledge</h1>
+				<span className="text-zinc-600 text-sm font-mono">27 technologies</span>
+			</div>
+
+			{/* Tech icons grid */}
+			<TechGrid />
+
+			{/* Certificates divider */}
+			<div className="flex items-end justify-between border-b border-white/10 pb-6 mb-10">
+				<h2 className="text-white text-4xl font-serif">Certificates</h2>
 				<span className="text-zinc-600 text-sm font-mono">
 					{certificates.length} certificates
 				</span>
@@ -54,11 +64,9 @@ export default function CertificatesCard() {
 										</span>
 										<VerifiedIcon />
 									</div>
-
 									<p className="text-white text-sm font-medium leading-snug flex-1">
 										{title}
 									</p>
-
 									<span className="text-zinc-500 text-xs group-hover:text-zinc-300 transition-colors">
 										View credential →
 									</span>
@@ -88,7 +96,6 @@ export default function CertificatesCard() {
 									>
 										{issuer}
 									</span>
-
 									<p className="text-white text-sm font-medium leading-snug flex-1">
 										{title}
 									</p>
@@ -98,6 +105,6 @@ export default function CertificatesCard() {
 					</div>
 				</div>
 			)}
-		</section>
+		</div>
 	);
 }

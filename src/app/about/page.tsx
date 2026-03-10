@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Knowledge from '../../components/Knowledge';
 
 const timelineItems = [
 	{
@@ -150,6 +151,8 @@ export default function AboutPage() {
 					</div>
 				</div>
 			</div>
+			{/* Divider */}
+			<div className="w-full max-w-5xl my-12 h-px bg-white/20" />
 		</div>
 	);
 }
