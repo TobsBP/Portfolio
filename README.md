@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
 
-## Getting Started
+# 🗂️ Portfolio
 
-First, run the development server:
+> 🚀 Personal portfolio built with modern web technologies, showcasing projects, skills, and experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=nextdotjs)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Biome](https://img.shields.io/badge/Biome-linter-60a5fa?style=flat-square&logo=biome)](https://biomejs.dev/)
+
+</div>
+
+---
+
+## 📁 Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx          # Home — hero section
+│   ├── about/            # About — timeline & facts
+│   ├── projects/         # Projects showcase
+│   ├── knowledge/        # Skills & tech stack
+│   ├── contact/          # Contact page
+│   ├── layout.tsx        # Root layout
+│   └── globals.css       # Global styles
+├── components/
+│   ├── NavBar.tsx        # Navigation
+│   ├── HeroCode.tsx      # Animated code display
+│   ├── ProjectCard.tsx   # Project card
+│   ├── CertificatesCard.tsx
+│   ├── Knowledge.tsx     # Tech grid
+│   ├── TechGrid.tsx
+│   └── Footer.tsx
+├── data/
+│   ├── projects.ts       # Projects data
+│   ├── technologies.ts   # Tech stack icons
+│   ├── certificates.ts
+│   └── heroCode.ts       # Hero animation content
+└── lib/
+    └── fonts.ts          # Font configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Category | Technologies |
+|---|---|
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript 5 |
+| **Styling** | Tailwind CSS v4 |
+| **Icons** | React Icons |
+| **Linter / Formatter** | Biome |
+| **Git Hooks** | Husky + lint-staged |
+| **CI/CD** | GitHub Actions |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 Pages
 
-## Learn More
+- **`/`** — Hero section with animated code snippet
+- **`/projects`** — Portfolio of projects with tech badges
+- **`/about`** — Profile, career timeline, and fun facts
+- **`/knowledge`** — Full tech stack visualization
+- **`/contact`** — Contact information
 
-To learn more about Next.js, take a look at the following resources:
+## ⚡ Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Install dependencies
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Start dev server
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📜 Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run dev     # Development server
+npm run build   # Production build
+npm run start   # Start production server
+npm run lint    # Lint & format with Biome
+```
