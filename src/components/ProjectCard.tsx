@@ -14,7 +14,7 @@ export default function ProjectCard({
 	const imageUrl = assetUrl(project.cover_img);
 
 	return (
-		<div className="border border-white/10 rounded-2xl overflow-hidden flex flex-col hover:border-white/25 transition-colors duration-200">
+		<div className="card-border border border-white/10 rounded-2xl overflow-hidden flex flex-col hover:border-white/25 transition-colors duration-200">
 			{/* Card top */}
 			<div className="bg-zinc-950 h-48 relative flex items-center justify-center overflow-hidden select-none">
 				{imageUrl ? (
@@ -77,23 +77,25 @@ export default function ProjectCard({
 					{project.description}
 				</p>
 
-				<div className="flex flex-wrap gap-2 pt-1">
-					{project.technologies.map(({ Technologies_id: tech }) => (
-						<span
-							key={tech.id}
-							className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-zinc-300"
-						>
-							<Image
-								src={assetUrl(tech.icon) ?? ''}
-								alt={tech.name}
-								width={14}
-								height={14}
-								className="object-contain"
-							/>
-							{tech.name}
-						</span>
-					))}
-				</div>
+				{project.technologies.length > 0 && (
+					<div className="flex flex-wrap gap-2 pt-1">
+						{project.technologies.map(({ Technologies_id: tech }) => (
+							<span
+								key={tech.id}
+								className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-zinc-300"
+							>
+								<Image
+									src={assetUrl(tech.icon) ?? ''}
+									alt={tech.name}
+									width={14}
+									height={14}
+									className="object-contain"
+								/>
+								{tech.name}
+							</span>
+						))}
+					</div>
+				)}
 			</div>
 		</div>
 	);

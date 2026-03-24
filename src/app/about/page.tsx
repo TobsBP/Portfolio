@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Knowledge from '../../components/Knowledge';
 
 const timelineItems = [
 	{

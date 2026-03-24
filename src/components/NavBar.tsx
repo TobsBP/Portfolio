@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -35,13 +36,20 @@ export default function NavBar() {
 						<Link
 							key={href}
 							href={href}
-							className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+							className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
 								active
-									? 'bg-white text-black'
+									? 'text-black'
 									: 'text-zinc-400 hover:text-white hover:bg-white/10'
 							}`}
 						>
-							{label}
+							{active && (
+								<motion.span
+									layoutId="nav-pill"
+									className="absolute inset-0 rounded-full bg-white"
+									transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+								/>
+							)}
+							<span className="relative z-10">{label}</span>
 						</Link>
 					);
 				})}

@@ -1,4 +1,8 @@
-export { type Project, ProjectSchema } from './project';
+export {
+	type Project,
+	ProjectSchema,
+	ProjectTechnologySchema,
+} from './project';
 export { type Technology, TechnologySchema } from './technology';
 
 import type { Project } from './project';

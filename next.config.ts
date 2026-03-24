@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
 				pathname: '/assets/**',
 			},
 		],
+		dangerouslyAllowSVG: true,
+		contentDispositionType: 'attachment',
 	},
 	env: {
 		NEXT_DIRECTUS_URL: process.env.NEXT_DIRECTUS_URL ?? '',

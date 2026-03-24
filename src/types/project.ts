@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { TechnologySchema } from './technology';
 
-const ProjectTechnologySchema = z.object({
+export const ProjectTechnologySchema = z.object({
+	Projects_id: z.number().optional(),
 	Technologies_id: TechnologySchema,
 });
 
