@@ -14,18 +14,18 @@ export default function ProjectCard({
 	const imageUrl = assetUrl(project.cover_img);
 
 	return (
-		<div className="card-border border border-white/10 rounded-2xl overflow-hidden flex flex-col hover:border-white/25 transition-colors duration-200">
+		<div className="card-border glass rounded-2xl overflow-hidden flex flex-col h-full group">
 			{/* Card top */}
-			<div className="bg-zinc-950 h-48 relative flex items-center justify-center overflow-hidden select-none">
+			<div className="h-48 relative flex items-center justify-center overflow-hidden select-none bg-white/2">
 				{imageUrl ? (
 					<Image
 						src={imageUrl}
 						alt={project.tittle}
 						fill
-						className="object-cover opacity-80"
+						className="object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-300"
 					/>
 				) : (
-					<span className="text-zinc-800 text-8xl font-serif font-bold leading-none">
+					<span className="text-white/10 text-8xl font-serif font-bold leading-none group-hover:text-sky-400/15 transition-colors duration-300">
 						{String(index + 1).padStart(2, '0')}
 					</span>
 				)}
@@ -42,7 +42,7 @@ export default function ProjectCard({
 									alt={tech.name}
 									width={20}
 									height={20}
-									className="opacity-60 drop-shadow object-contain"
+									className="opacity-60 group-hover:opacity-90 drop-shadow object-contain transition-opacity"
 									title={tech.name}
 								/>
 							))}
@@ -56,7 +56,7 @@ export default function ProjectCard({
 					href={project.live_url}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="text-white font-serif text-lg hover:underline underline-offset-4 flex items-center gap-1.5 group w-fit"
+					className="text-white font-serif text-lg hover:text-sky-400 transition-colors flex items-center gap-1.5 group/link w-fit"
 				>
 					{project.tittle}
 					<svg
@@ -66,7 +66,7 @@ export default function ProjectCard({
 						fill="none"
 						stroke="currentColor"
 						strokeWidth="2"
-						className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0"
+						className="opacity-0 group-hover/link:opacity-100 transition-opacity shrink-0"
 					>
 						<title>Open</title>
 						<path d="M7 17L17 7M17 7H7M17 7v10" />
@@ -82,7 +82,7 @@ export default function ProjectCard({
 						{project.technologies.map(({ Technologies_id: tech }) => (
 							<span
 								key={tech.id}
-								className="flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-xs text-zinc-300"
+								className="flex items-center gap-1.5 bg-white/5 border border-sky-400/15 hover:border-sky-400/35 px-3 py-1 rounded-full text-xs text-zinc-300 transition-colors"
 							>
 								<Image
 									src={assetUrl(tech.icon) ?? ''}

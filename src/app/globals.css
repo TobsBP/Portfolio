@@ -1,25 +1,21 @@
 @import "tailwindcss";
 
 :root {
-	--background: #ffffff;
-	--foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
+	--accent: #38bdf8;
+	--accent-dim: rgba(56, 189, 248, 0.15);
+	--bg: #05050f;
 }
 
 html,
 body {
-	background: #000000;
-	color: var(--foreground);
+	background: var(--bg);
+	color: #e2e8f0;
 	font-family: Arial, Helvetica, sans-serif;
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 }
 
+/* ─── Scrollbar ─── */
 .no-scrollbar::-webkit-scrollbar {
 	display: none;
 }
@@ -28,22 +24,56 @@ body {
 	scrollbar-width: none;
 }
 
-@keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(12px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+/* ─── Glassmorphism ─── */
+.glass {
+	background: rgba(255, 255, 255, 0.03);
+	backdrop-filter: blur(24px);
+	-webkit-backdrop-filter: blur(24px);
+	border: 1px solid rgba(56, 189, 248, 0.08);
+	transition:
+		border-color 0.3s ease,
+		background 0.3s ease,
+		box-shadow 0.3s ease;
 }
 
-.animate-fade-in-up {
-	animation: fadeInUp 0.4s ease forwards;
+.glass:hover {
+	border-color: rgba(56, 189, 248, 0.28);
+	background: rgba(56, 189, 248, 0.04);
+	box-shadow: 0 0 32px rgba(56, 189, 248, 0.07);
 }
 
-/* Border beam */
+/* ─── Gradient text ─── */
+.gradient-text {
+	background: linear-gradient(135deg, #ffffff 20%, #38bdf8 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* ─── Glow effects ─── */
+.glow-cyan {
+	box-shadow: 0 0 24px rgba(56, 189, 248, 0.2);
+}
+
+.glow-cyan:hover {
+	box-shadow: 0 0 40px rgba(56, 189, 248, 0.35);
+}
+
+/* ─── Section divider line ─── */
+.section-line {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.section-line::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(90deg, rgba(56, 189, 248, 0.3), transparent);
+}
+
+/* ─── Legacy border beam (kept for ProjectCard) ─── */
 .card-border {
 	position: relative;
 }
@@ -58,8 +88,8 @@ body {
 		from var(--angle, 0deg),
 		transparent 0%,
 		transparent 55%,
-		white 75%,
-		white 85%,
+		#38bdf8 75%,
+		#38bdf8 85%,
 		transparent 100%
 	);
 	-webkit-mask:
@@ -90,4 +120,71 @@ body {
 	to {
 		--angle: 360deg;
 	}
+}
+
+/* ─── Legacy fadeInUp (kept for TechGrid) ─── */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.4s ease forwards;
+}
+
+/* ─── Timeline dot pulse ─── */
+@keyframes pulse-dot {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
+	}
+	50% {
+		box-shadow: 0 0 0 6px rgba(56, 189, 248, 0);
+	}
+}
+
+.timeline-dot {
+	animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ─── Ambient background blobs ─── */
+.bg-blob {
+	position: fixed;
+	border-radius: 50%;
+	filter: blur(80px);
+	pointer-events: none;
+	z-index: 0;
+}
+
+/* ─── Marquee bounce (skills) ─── */
+@keyframes marquee-bounce {
+	0%,
+	100% {
+		transform: translateX(0%);
+	}
+	50% {
+		transform: translateX(var(--marquee-offset, -25%));
+	}
+}
+
+.marquee-track {
+	display: flex;
+	gap: 0.75rem;
+	width: max-content;
+	animation: marquee-bounce var(--marquee-duration, 25s) ease-in-out infinite;
+	will-change: transform;
+}
+
+.marquee-track:hover {
+	animation-play-state: paused;
+}
+
+.marquee-track.reverse {
+	animation-direction: reverse;
 }
