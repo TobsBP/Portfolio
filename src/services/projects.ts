@@ -4,7 +4,10 @@ import { ProjectSchema, ProjectTechnologySchema } from '@/types/project';
 
 export async function getProjects(): Promise<Project[]> {
 	const BASE = process.env.NEXT_DIRECTUS_URL;
-	if (!BASE) throw new Error('NEXT_DIRECTUS_URL is not set');
+	if (!BASE) {
+		console.warn('NEXT_DIRECTUS_URL is not set — returning empty projects');
+		return [];
+	}
 
 	try {
 		const [projectsRes, junctionRes] = await Promise.all([

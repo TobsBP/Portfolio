@@ -1,46 +1,75 @@
-import Link from 'next/link';
-import HeroCode from '../components/HeroCode';
+import AboutSection from '@/components/sections/AboutSection';
+import ContactSection from '@/components/sections/ContactSection';
+import HeroSection from '@/components/sections/HeroSection';
+import ProjectsSection from '@/components/sections/ProjectsSection';
+import SkillsSection from '@/components/sections/SkillsSection';
+import { getProjects } from '@/services/projects';
 
-export default function Home() {
+export default async function Home() {
+	const projects = await getProjects();
+
 	return (
-		<div className="bg-black">
-			{/* Hero */}
-			<section className="pl-30 pr-8 pt-16 pb-14">
-				<div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-					{/* Left — text */}
-					<div className="flex-1 min-w-0">
-						<p className="text-zinc-500 text-xs font-mono mb-4 tracking-widest uppercase">
-							Software Developer
-						</p>
-						<h1 className="text-white text-5xl sm:text-6xl font-serif leading-tight mb-5">
-							Tobias
-						</h1>
-						<p className="text-zinc-400 text-base leading-relaxed mb-8 max-w-lg">
-							Full-stack developer building clean, performant web applications.
-							Focused on TypeScript, Next.js and backend APIs.
-						</p>
-						<div className="flex flex-wrap gap-3">
-							<Link
-								href="/projects"
-								className="px-5 py-2.5 bg-white text-black text-sm font-medium rounded-full hover:bg-zinc-200 transition-colors"
-							>
-								View Projects
-							</Link>
-							<Link
-								href="/contact"
-								className="px-5 py-2.5 border border-zinc-700 text-white text-sm font-medium rounded-full hover:border-zinc-500 hover:bg-white/5 transition-colors"
-							>
-								Get in touch
-							</Link>
-						</div>
-					</div>
+		<main className="relative">
+			{/* Global ambient blobs */}
+			<div
+				aria-hidden="true"
+				style={{
+					position: 'fixed',
+					top: '-150px',
+					right: '-150px',
+					width: '600px',
+					height: '600px',
+					borderRadius: '50%',
+					filter: 'blur(100px)',
+					background:
+						'radial-gradient(ellipse, rgba(56,189,248,0.12) 0%, transparent 70%)',
+					pointerEvents: 'none',
+					zIndex: -1,
+				}}
+			/>
+			<div
+				aria-hidden="true"
+				style={{
+					position: 'fixed',
+					bottom: '-100px',
+					left: '-100px',
+					width: '500px',
+					height: '500px',
+					borderRadius: '50%',
+					filter: 'blur(100px)',
+					background:
+						'radial-gradient(ellipse, rgba(99,102,241,0.1) 0%, transparent 70%)',
+					pointerEvents: 'none',
+					zIndex: -1,
+				}}
+			/>
 
-					{/* Right — animated code */}
-					<div className="flex-1 w-full min-w-0 max-w-lg lg:max-w-none mr-15">
-						<HeroCode />
-					</div>
-				</div>
-			</section>
-		</div>
+			<HeroSection />
+
+			{/* Section separator */}
+			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+			</div>
+
+			<ProjectsSection projects={projects} />
+
+			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+			</div>
+
+			<SkillsSection />
+
+			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+			</div>
+
+			<AboutSection />
+
+			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+			</div>
+
+			<ContactSection />
+		</main>
 	);
 }

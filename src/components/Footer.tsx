@@ -1,11 +1,12 @@
-import Link from 'next/link';
 import { MdOutlineEmail } from 'react-icons/md';
 import { SiGithub, SiLinkerd } from 'react-icons/si';
 
 const links = [
-	{ href: '/', label: 'Home' },
-	{ href: '/about', label: 'About Me' },
-	{ href: '/contact', label: 'Contact' },
+	{ href: '#hero', label: 'Home' },
+	{ href: '#projects', label: 'Projects' },
+	{ href: '#skills', label: 'Skills' },
+	{ href: '#about', label: 'About' },
+	{ href: '#contact', label: 'Contact' },
 ];
 
 const socials = [
@@ -28,27 +29,27 @@ const socials = [
 
 export default function Footer() {
 	return (
-		<footer className="mt-16 border-t border-white/10 bg-black">
-			<div className="max-w-5xl mx-auto px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-8">
+		<footer className="mt-4 border-t border-white/[0.06] bg-[#05050f]">
+			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-10 flex flex-col sm:flex-row items-center justify-between gap-8">
 				{/* Nav links */}
-				<nav className="flex gap-6">
+				<nav className="flex gap-6 flex-wrap justify-center">
 					{links.map(({ href, label }) => (
-						<Link
+						<a
 							key={href}
 							href={href}
-							className="text-zinc-500 text-sm hover:text-white transition-colors"
+							className="text-zinc-500 text-sm hover:text-sky-400 transition-colors"
 						>
 							{label}
-						</Link>
+						</a>
 					))}
 				</nav>
 
-				{/* Crédito central */}
-				<p className="text-zinc-600 text-xs order-last sm:order-0">
+				{/* Credit */}
+				<p className="text-zinc-600 text-xs order-last sm:order-none">
 					© {new Date().getFullYear()} Tobias — Built with Next.js
 				</p>
 
-				{/* Sociais */}
+				{/* Socials */}
 				<div className="flex gap-4">
 					{socials.map(({ href, label, icon: Icon }) => (
 						<a
@@ -57,7 +58,7 @@ export default function Footer() {
 							target={href.startsWith('mailto') ? undefined : '_blank'}
 							rel="noopener noreferrer"
 							aria-label={label}
-							className="text-zinc-500 hover:text-white transition-colors"
+							className="text-zinc-500 hover:text-sky-400 transition-colors"
 						>
 							<Icon className="text-xl" />
 						</a>
