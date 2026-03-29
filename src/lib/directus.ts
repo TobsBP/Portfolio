@@ -5,9 +5,9 @@ if (!process.env.NEXT_DIRECTUS_URL) {
 	throw new Error('NEXT_DIRECTUS_URL is not set');
 }
 
-const directus = createDirectus<Schema>(process.env.NEXT_DIRECTUS_URL).with(
-	rest(),
-);
+const directus = createDirectus<Schema>(
+	process.env.NEXT_DIRECTUS_URL ?? '',
+).with(rest());
 export default directus;
 
 export function assetUrl(uuid: string | null | undefined): string | null {
