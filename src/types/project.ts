@@ -8,10 +8,10 @@ export const ProjectTechnologySchema = z.object({
 
 export const ProjectSchema = z.object({
 	id: z.number(),
-	tittle: z.string(), // typo mantido — é o nome do campo no Directus
+	tittle: z.string(),
 	description: z.string(),
-	cover_img: z.string().uuid().nullable(),
-	live_url: z.string().url(),
+	cover_img: z.uuid().nullable(),
+	live_url: z.url(),
 	technologies: z.array(ProjectTechnologySchema).optional().default([]),
 });
 
