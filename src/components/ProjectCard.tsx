@@ -1,102 +1,76 @@
-'use client';
-
 import Image from 'next/image';
 import { assetUrl } from '@/lib/directus';
 import type { Project } from '@/types';
 
+/** Projeto com deploy no ar: a captura da interface e o conteudo principal. */
 export default function ProjectCard({
 	project,
-	index,
+	description,
 }: {
 	project: Project;
-	index: number;
+	description: string;
 }) {
 	const imageUrl = assetUrl(project.cover_img);
 
 	return (
-		<div className="card-border glass rounded-2xl overflow-hidden flex flex-col h-full group">
-			{/* Card top */}
-			<div className="h-48 relative flex items-center justify-center overflow-hidden select-none bg-white/2">
+		<a
+			href={project.live_url}
+			target="_blank"
+			rel="noopener noreferrer"
+			className="project-card group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+		>
+			<div className="relative aspect-[16/10] overflow-hidden bg-line">
 				{imageUrl ? (
 					<Image
 						src={imageUrl}
-						alt={project.tittle}
+						alt=""
 						fill
-						className="object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-300"
+						sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 600px"
+						className="project-card-img object-cover object-top"
 					/>
 				) : (
-					<span className="text-white/10 text-8xl font-serif font-bold leading-none group-hover:text-sky-400/15 transition-colors duration-300">
-						{String(index + 1).padStart(2, '0')}
+					<span className="absolute inset-0 flex items-center px-7 font-serif text-3xl leading-tight text-fg/25">
+						{project.tittle}
 					</span>
 				)}
-
-				{/* Floating tech icons */}
-				{project.technologies.length > 0 && (
-					<div className="absolute top-4 right-4 flex gap-2.5 z-10">
-						{project.technologies
-							.slice(0, 4)
-							.map(({ Technologies_id: tech }) => (
-								<Image
-									key={tech.id}
-									src={assetUrl(tech.icon) ?? ''}
-									alt={tech.name}
-									width={20}
-									height={20}
-									className="opacity-60 group-hover:opacity-90 drop-shadow object-contain transition-opacity"
-									title={tech.name}
-								/>
-							))}
-					</div>
-				)}
+				<div className="pointer-events-none absolute inset-0 bg-linear-to-t from-bg via-transparent to-transparent opacity-70" />
 			</div>
 
-			{/* Content */}
-			<div className="p-6 flex flex-col gap-4 flex-1">
-				<a
-					href={project.live_url}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="text-white font-serif text-lg hover:text-sky-400 transition-colors flex items-center gap-1.5 group/link w-fit"
-				>
+			<div className="flex flex-1 flex-col gap-3 px-6 pt-5 pb-6">
+				<h3 className="flex items-baseline gap-2 font-serif text-xl text-fg transition-colors group-hover:text-accent">
 					{project.tittle}
-					<svg
-						width="13"
-						height="13"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-						className="opacity-0 group-hover/link:opacity-100 transition-opacity shrink-0"
+					<span
+						aria-hidden="true"
+						className="translate-y-px text-accent/0 transition-colors duration-200 group-hover:text-accent/70"
 					>
-						<title>Open</title>
-						<path d="M7 17L17 7M17 7H7M17 7v10" />
-					</svg>
-				</a>
+						&#8599;
+					</span>
+				</h3>
 
-				<p className="text-zinc-400 text-sm leading-relaxed flex-1">
-					{project.description}
+				<p className="line-clamp-3 text-sm leading-relaxed text-muted">
+					{description}
 				</p>
 
 				{project.technologies.length > 0 && (
-					<div className="flex flex-wrap gap-2 pt-1">
+					<ul className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 pt-2">
 						{project.technologies.map(({ Technologies_id: tech }) => (
-							<span
+							<li
 								key={tech.id}
-								className="flex items-center gap-1.5 bg-white/5 border border-sky-400/15 hover:border-sky-400/35 px-3 py-1 rounded-full text-xs text-zinc-300 transition-colors"
+								className="flex items-center gap-1.5 text-xs text-subtle"
 							>
 								<Image
 									src={assetUrl(tech.icon) ?? ''}
-									alt={tech.name}
-									width={14}
-									height={14}
-									className="object-contain"
+									alt=""
+									width={13}
+									height={13}
+									className="object-contain opacity-60"
 								/>
 								{tech.name}
-							</span>
+							</li>
 						))}
-					</div>
+					</ul>
 				)}
 			</div>
-		</div>
+		</a>
 	);
 }

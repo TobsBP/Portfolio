@@ -3,7 +3,7 @@ import { technologies } from '../data/technologies';
 export default function Knowledge() {
 	return (
 		<div className="mt-8 ml-5 mr-5">
-			<div className="text-white text-4xl mb-6">Knowledge</div>
+			<div className="text-fg text-4xl mb-6">Knowledge</div>
 			<div className="flex flex-wrap gap-3 justify-center">
 				{technologies.map((tech) => (
 					<div
@@ -17,7 +17,7 @@ export default function Knowledge() {
 								{tech.letter}
 							</span>
 						) : null}
-						<span className="text-white text-sm font-medium">{tech.name}</span>
+						<span className="text-fg text-sm font-medium">{tech.name}</span>
 					</div>
 				))}
 			</div>

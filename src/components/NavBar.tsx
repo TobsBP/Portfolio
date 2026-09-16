@@ -3,16 +3,19 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { usePrefs } from '@/components/PrefsProvider';
+import PrefsToggles from '@/components/PrefsToggles';
 
 const links = [
-	{ href: '#hero', label: 'Home' },
-	{ href: '#projects', label: 'Projects' },
-	{ href: '#skills', label: 'Skills' },
-	{ href: '#about', label: 'About' },
-	{ href: '#contact', label: 'Contact' },
-];
+	{ href: '#hero', key: 'home' },
+	{ href: '#projects', key: 'projects' },
+	{ href: '#skills', key: 'skills' },
+	{ href: '#about', key: 'about' },
+	{ href: '#contact', key: 'contact' },
+] as const;
 
 export default function NavBar() {
+	const { t } = usePrefs();
 	const [active, setActive] = useState('#hero');
 
 	useEffect(() => {
@@ -38,7 +41,7 @@ export default function NavBar() {
 	}, []);
 
 	return (
-		<nav className="fixed top-0 z-50 w-full flex items-center px-6 py-3 bg-[#05050f]/80 backdrop-blur-xl border-b border-white/[0.06]">
+		<nav className="fixed top-0 z-50 flex w-full items-center border-b border-line bg-bg/80 px-6 py-3 backdrop-blur-xl">
 			<a href="#hero" className="shrink-0">
 				<Image
 					alt="Site logo"
@@ -50,30 +53,36 @@ export default function NavBar() {
 				/>
 			</a>
 
-			<div className="ml-auto flex items-center gap-1">
-				{links.map(({ href, label }) => {
-					const isActive = active === href;
-					return (
-						<a
-							key={href}
-							href={href}
-							className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-								isActive
-									? 'text-[#05050f]'
-									: 'text-zinc-400 hover:text-white hover:bg-white/10'
-							}`}
-						>
-							{isActive && (
-								<motion.span
-									layoutId="nav-pill"
-									className="absolute inset-0 rounded-full bg-sky-400"
-									transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-								/>
-							)}
-							<span className="relative z-10">{label}</span>
-						</a>
-					);
-				})}
+			<div className="ml-4 flex min-w-0 flex-1 items-center justify-end gap-1">
+				<div className="no-scrollbar flex items-center gap-1 overflow-x-auto">
+					{links.map(({ href, key }) => {
+						const isActive = active === href;
+						return (
+							<a
+								key={href}
+								href={href}
+								className={`relative shrink-0 rounded-full px-3 py-1.5 text-sm font-medium transition-colors sm:px-4 ${
+									isActive
+										? 'text-accent-contrast'
+										: 'text-muted hover:bg-fg/10 hover:text-fg'
+								}`}
+							>
+								{isActive && (
+									<motion.span
+										layoutId="nav-pill"
+										className="absolute inset-0 rounded-full bg-accent"
+										transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+									/>
+								)}
+								<span className="relative z-10">{t.nav[key]}</span>
+							</a>
+						);
+					})}
+				</div>
+
+				<div className="ml-1 shrink-0 border-l border-line pl-2">
+					<PrefsToggles />
+				</div>
 			</div>
 		</nav>
 	);

@@ -1,18 +1,65 @@
 @import "tailwindcss";
 
-:root {
-	--accent: #38bdf8;
-	--accent-dim: rgba(56, 189, 248, 0.15);
+:root,
+:root[data-theme="dark"] {
 	--bg: #05050f;
+	--surface: rgba(255, 255, 255, 0.03);
+	--surface-hover: rgba(56, 189, 248, 0.05);
+	--fg: #ffffff;
+	--muted: #a1a1aa;
+	--subtle: #8b8b96;
+	--line: rgba(255, 255, 255, 0.09);
+	--accent: #38bdf8;
+	--accent-soft: rgba(56, 189, 248, 0.3);
+	--accent-dim: rgba(56, 189, 248, 0.15);
+	--accent-contrast: #05050f;
+	--blob-opacity: 1;
+	--shadow-card: none;
+	color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+	--bg: #f5f6f8;
+	--surface: #ffffff;
+	--surface-hover: #ffffff;
+	--fg: #101521;
+	--muted: #4b5563;
+	--subtle: #5b6472;
+	--line: rgba(16, 21, 33, 0.1);
+	--accent: #0369a1;
+	--accent-soft: rgba(3, 105, 161, 0.35);
+	--accent-dim: rgba(3, 105, 161, 0.1);
+	--accent-contrast: #ffffff;
+	--blob-opacity: 0.35;
+	--shadow-card:
+		0 1px 2px rgba(16, 21, 33, 0.04), 0 8px 24px rgba(16, 21, 33, 0.06);
+	color-scheme: light;
+}
+
+@theme inline {
+	--color-bg: var(--bg);
+	--color-surface: var(--surface);
+	--color-fg: var(--fg);
+	--color-muted: var(--muted);
+	--color-subtle: var(--subtle);
+	--color-line: var(--line);
+	--color-accent: var(--accent);
+	--color-accent-contrast: var(--accent-contrast);
 }
 
 html,
 body {
 	background: var(--bg);
-	color: #e2e8f0;
+	color: var(--muted);
 	font-family: Arial, Helvetica, sans-serif;
 	overflow-x: hidden;
 	scroll-behavior: smooth;
+}
+
+html {
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
 }
 
 /* ─── Scrollbar ─── */
@@ -26,10 +73,11 @@ body {
 
 /* ─── Glassmorphism ─── */
 .glass {
-	background: rgba(255, 255, 255, 0.03);
+	background: var(--surface);
+	box-shadow: var(--shadow-card);
 	backdrop-filter: blur(24px);
 	-webkit-backdrop-filter: blur(24px);
-	border: 1px solid rgba(56, 189, 248, 0.08);
+	border: 1px solid var(--line);
 	transition:
 		border-color 0.3s ease,
 		background 0.3s ease,
@@ -37,14 +85,13 @@ body {
 }
 
 .glass:hover {
-	border-color: rgba(56, 189, 248, 0.28);
-	background: rgba(56, 189, 248, 0.04);
-	box-shadow: 0 0 32px rgba(56, 189, 248, 0.07);
+	border-color: var(--accent-soft);
+	background: var(--surface-hover);
 }
 
 /* ─── Gradient text ─── */
 .gradient-text {
-	background: linear-gradient(135deg, #ffffff 20%, #38bdf8 100%);
+	background: linear-gradient(135deg, var(--fg) 20%, var(--accent) 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -52,11 +99,11 @@ body {
 
 /* ─── Glow effects ─── */
 .glow-cyan {
-	box-shadow: 0 0 24px rgba(56, 189, 248, 0.2);
+	box-shadow: 0 0 24px var(--accent-dim);
 }
 
 .glow-cyan:hover {
-	box-shadow: 0 0 40px rgba(56, 189, 248, 0.35);
+	box-shadow: 0 0 40px var(--accent-soft);
 }
 
 /* ─── Section divider line ─── */
@@ -70,10 +117,10 @@ body {
 	content: "";
 	flex: 1;
 	height: 1px;
-	background: linear-gradient(90deg, rgba(56, 189, 248, 0.3), transparent);
+	background: linear-gradient(90deg, var(--accent-soft), transparent);
 }
 
-/* ─── Legacy border beam (kept for ProjectCard) ─── */
+/* ─── Border beam (SkillsSection) ─── */
 .card-border {
 	position: relative;
 }
@@ -88,8 +135,8 @@ body {
 		from var(--angle, 0deg),
 		transparent 0%,
 		transparent 55%,
-		#38bdf8 75%,
-		#38bdf8 85%,
+		var(--accent) 75%,
+		var(--accent) 85%,
 		transparent 100%
 	);
 	-webkit-mask:
@@ -142,10 +189,10 @@ body {
 @keyframes pulse-dot {
 	0%,
 	100% {
-		box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
+		box-shadow: 0 0 0 0 var(--accent-soft);
 	}
 	50% {
-		box-shadow: 0 0 0 6px rgba(56, 189, 248, 0);
+		box-shadow: 0 0 0 6px transparent;
 	}
 }
 
@@ -156,6 +203,7 @@ body {
 /* ─── Ambient background blobs ─── */
 .bg-blob {
 	position: fixed;
+	opacity: var(--blob-opacity);
 	border-radius: 50%;
 	filter: blur(80px);
 	pointer-events: none;
@@ -187,4 +235,50 @@ body {
 
 .marquee-track.reverse {
 	animation-direction: reverse;
+}
+
+/* ─── Project cards ─── */
+.project-card {
+	transition:
+		border-color 0.3s ease,
+		background 0.3s ease;
+}
+
+.project-card {
+	box-shadow: var(--shadow-card);
+}
+
+.project-card:hover {
+	border-color: var(--accent-soft);
+	background: var(--surface-hover);
+}
+
+.project-card-img {
+	opacity: 0.82;
+	transition:
+		transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+		opacity 0.4s ease;
+}
+
+.project-card:hover .project-card-img {
+	opacity: 1;
+	transform: scale(1.04);
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	.card-border::before,
+	.marquee-track,
+	.timeline-dot,
+	.animate-fade-in-up {
+		animation: none;
+	}
+
+	.project-card:hover .project-card-img {
+		transform: none;
+	}
 }

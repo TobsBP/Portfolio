@@ -8,7 +8,7 @@ const VerifiedIcon = () => (
 		fill="none"
 		stroke="currentColor"
 		strokeWidth="2"
-		className="shrink-0 text-zinc-500"
+		className="shrink-0 text-subtle"
 	>
 		<title>Open credential</title>
 		<path d="M7 17L17 7M17 7H7M17 7v10" />
@@ -22,9 +22,9 @@ export default function CertificatesCard() {
 	return (
 		<section className="px-8 py-10">
 			{/* Header */}
-			<div className="mb-10 flex items-end justify-between border-b border-white/10 pb-6">
-				<h1 className="text-white text-4xl font-serif">Certificates</h1>
-				<span className="text-zinc-600 text-sm font-mono">
+			<div className="mb-10 flex items-end justify-between border-b border-line pb-6">
+				<h1 className="text-fg text-4xl font-serif">Certificates</h1>
+				<span className="text-subtle text-sm font-mono">
 					{certificates.length} certificates
 				</span>
 			</div>
@@ -32,19 +32,19 @@ export default function CertificatesCard() {
 			{/* Verified */}
 			{verified.length > 0 && (
 				<div className="mb-10">
-					<p className="text-zinc-500 text-xs font-mono uppercase tracking-widest mb-5">
+					<p className="text-subtle text-xs font-mono uppercase tracking-widest mb-5">
 						Verified credentials
 					</p>
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 						{verified.map(({ title, issuer, href }) => {
-							const color = issuerColors[issuer] ?? 'text-zinc-400';
+							const color = issuerColors[issuer] ?? 'text-muted';
 							return (
 								<a
 									key={title}
 									href={href}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="group border border-zinc-700 hover:border-zinc-400 hover:bg-white/[0.02] rounded-2xl p-5 flex flex-col gap-4 transition-all duration-200"
+									className="group border border-zinc-700 hover:border-zinc-400 hover:bg-fg/2 rounded-2xl p-5 flex flex-col gap-4 transition-all duration-200"
 								>
 									<div className="flex items-center justify-between">
 										<span
@@ -55,11 +55,11 @@ export default function CertificatesCard() {
 										<VerifiedIcon />
 									</div>
 
-									<p className="text-white text-sm font-medium leading-snug flex-1">
+									<p className="text-fg text-sm font-medium leading-snug flex-1">
 										{title}
 									</p>
 
-									<span className="text-zinc-500 text-xs group-hover:text-zinc-300 transition-colors">
+									<span className="text-subtle text-xs group-hover:text-muted transition-colors">
 										View credential →
 									</span>
 								</a>
@@ -72,12 +72,12 @@ export default function CertificatesCard() {
 			{/* Unverified */}
 			{unverified.length > 0 && (
 				<div>
-					<p className="text-zinc-500 text-xs font-mono uppercase tracking-widest mb-5">
+					<p className="text-subtle text-xs font-mono uppercase tracking-widest mb-5">
 						Other certificates
 					</p>
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 						{unverified.map(({ title, issuer }) => {
-							const color = issuerColors[issuer] ?? 'text-zinc-400';
+							const color = issuerColors[issuer] ?? 'text-muted';
 							return (
 								<div
 									key={title}
@@ -89,7 +89,7 @@ export default function CertificatesCard() {
 										{issuer}
 									</span>
 
-									<p className="text-white text-sm font-medium leading-snug flex-1">
+									<p className="text-fg text-sm font-medium leading-snug flex-1">
 										{title}
 									</p>
 								</div>

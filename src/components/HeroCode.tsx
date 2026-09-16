@@ -16,13 +16,13 @@ export default function HeroCode() {
 	}, [visible]);
 
 	return (
-		<div className="rounded-xl border border-white/10 bg-zinc-950 overflow-hidden font-mono text-xs w-full">
+		<div className="rounded-xl border border-line bg-zinc-950 overflow-hidden font-mono text-xs w-full">
 			{/* Title bar */}
-			<div className="flex items-center gap-1.5 px-4 py-3 border-b border-white/10 bg-zinc-900/60">
+			<div className="flex items-center gap-1.5 px-4 py-3 border-b border-line bg-zinc-900/60">
 				<span className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
 				<span className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
 				<span className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-				<span className="ml-3 text-zinc-500 text-[11px]">developer.ts</span>
+				<span className="ml-3 text-subtle text-[11px]">developer.ts</span>
 			</div>
 
 			{/* Code lines */}
@@ -38,7 +38,7 @@ export default function HeroCode() {
 						}`}
 					>
 						{/* Line number */}
-						<span className="text-zinc-700 w-6 shrink-0 text-right mr-4 select-none">
+						<span className="text-subtle w-6 shrink-0 text-right mr-4 select-none">
 							{i + 1}
 						</span>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import FadeUp from '@/components/FadeUp';
+import { usePrefs } from '@/components/PrefsProvider';
 import { certificates, issuerColors } from '@/data/certificates';
 import { type Tech, technologies } from '@/data/technologies';
 
@@ -12,7 +13,7 @@ const VerifiedIcon = () => (
 		fill="none"
 		stroke="currentColor"
 		strokeWidth="2"
-		className="shrink-0 text-sky-400"
+		className="shrink-0 text-accent"
 	>
 		<title>Open credential</title>
 		<path d="M7 17L17 7M17 7H7M17 7v10" />
@@ -30,7 +31,7 @@ function TechBadge({ tech }: { tech: Tech }) {
 					{tech.letter}
 				</span>
 			)}
-			<span className="text-white text-sm font-medium whitespace-nowrap">
+			<span className="text-fg text-sm font-medium whitespace-nowrap">
 				{tech.name}
 			</span>
 		</div>
@@ -43,6 +44,8 @@ const row2 = technologies.slice(9, 18);
 const row3 = technologies.slice(18);
 
 export default function SkillsSection() {
+	const { t } = usePrefs();
+
 	const verified = certificates.filter((c) => c.href);
 	const unverified = certificates.filter((c) => !c.href);
 
@@ -53,11 +56,11 @@ export default function SkillsSection() {
 				<FadeUp>
 					<div className="section-line mb-12">
 						<div className="flex items-end gap-4">
-							<h2 className="text-white text-4xl md:text-5xl font-serif">
-								Skills
+							<h2 className="font-serif text-4xl text-fg md:text-5xl">
+								{t.skills.title}
 							</h2>
-							<span className="text-sky-400/60 text-sm font-mono pb-1">
-								{technologies.length} technologies
+							<span className="pb-1 font-mono text-sm text-accent/70">
+								{t.skills.count(technologies.length)}
 							</span>
 						</div>
 					</div>
@@ -129,11 +132,11 @@ export default function SkillsSection() {
 				<FadeUp>
 					<div className="section-line mb-10">
 						<div className="flex items-end gap-4">
-							<h2 className="text-white text-4xl md:text-5xl font-serif">
-								Certificates
+							<h2 className="font-serif text-4xl text-fg md:text-5xl">
+								{t.skills.certificates}
 							</h2>
-							<span className="text-sky-400/60 text-sm font-mono pb-1">
-								{certificates.length} certificates
+							<span className="pb-1 font-mono text-sm text-accent/70">
+								{t.skills.certificatesCount(certificates.length)}
 							</span>
 						</div>
 					</div>
@@ -143,13 +146,13 @@ export default function SkillsSection() {
 				{verified.length > 0 && (
 					<div className="mb-10">
 						<FadeUp>
-							<p className="text-zinc-500 text-xs font-mono uppercase tracking-widest mb-5">
+							<p className="text-subtle text-xs font-mono uppercase tracking-widest mb-5">
 								Verified credentials
 							</p>
 						</FadeUp>
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 							{verified.map(({ title, issuer, href }, i) => {
-								const color = issuerColors[issuer] ?? 'text-zinc-400';
+								const color = issuerColors[issuer] ?? 'text-muted';
 								return (
 									<FadeUp key={title} delay={i * 0.08}>
 										<a
@@ -166,10 +169,10 @@ export default function SkillsSection() {
 												</span>
 												<VerifiedIcon />
 											</div>
-											<p className="text-white text-sm font-medium leading-snug flex-1">
+											<p className="text-fg text-sm font-medium leading-snug flex-1">
 												{title}
 											</p>
-											<span className="text-zinc-500 text-xs group-hover:text-sky-400 transition-colors">
+											<span className="text-subtle text-xs group-hover:text-accent transition-colors">
 												View credential →
 											</span>
 										</a>
@@ -184,13 +187,13 @@ export default function SkillsSection() {
 				{unverified.length > 0 && (
 					<div>
 						<FadeUp>
-							<p className="text-zinc-500 text-xs font-mono uppercase tracking-widest mb-5">
+							<p className="text-subtle text-xs font-mono uppercase tracking-widest mb-5">
 								Other certificates
 							</p>
 						</FadeUp>
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 							{unverified.map(({ title, issuer }, i) => {
-								const color = issuerColors[issuer] ?? 'text-zinc-400';
+								const color = issuerColors[issuer] ?? 'text-muted';
 								return (
 									<FadeUp key={title} delay={i * 0.08}>
 										<div className="glass rounded-2xl p-5 flex flex-col gap-4">
@@ -199,7 +202,7 @@ export default function SkillsSection() {
 											>
 												{issuer}
 											</span>
-											<p className="text-white text-sm font-medium leading-snug flex-1">
+											<p className="text-fg text-sm font-medium leading-snug flex-1">
 												{title}
 											</p>
 										</div>

@@ -1,9 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { usePrefs } from '@/components/PrefsProvider';
 import HeroCode from '../HeroCode';
 
 export default function HeroSection() {
+	const { t } = usePrefs();
+	// partes impares do split sao os termos entre chaves, destacados no acento
+	const bio = t.hero.bio.split(/\{([^}]+)\}/g);
+
 	return (
 		<section
 			id="hero"
@@ -11,19 +16,21 @@ export default function HeroSection() {
 		>
 			{/* Ambient blobs */}
 			<div
-				className="bg-blob w-125 h-125 top-25 right-25 opacity-20"
+				className="bg-blob top-25 right-25 h-125 w-125"
 				style={{
 					background:
-						'radial-gradient(ellipse, rgba(56,189,248,0.6) 0%, transparent 70%)',
+						'radial-gradient(ellipse, var(--accent) 0%, transparent 70%)',
 					position: 'absolute',
+					opacity: 'calc(var(--blob-opacity) * 0.2)',
 				}}
 			/>
 			<div
-				className="bg-blob w-100 h-100 bottom-0 left-20 opacity-10"
+				className="bg-blob bottom-0 left-20 h-100 w-100"
 				style={{
 					background:
-						'radial-gradient(ellipse, rgba(99,102,241,0.7) 0%, transparent 70%)',
+						'radial-gradient(ellipse, var(--accent) 0%, transparent 70%)',
 					position: 'absolute',
+					opacity: 'calc(var(--blob-opacity) * 0.12)',
 				}}
 			/>
 
@@ -34,9 +41,9 @@ export default function HeroSection() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.1 }}
-						className="text-sky-400 text-xs font-mono mb-4 tracking-[0.25em] uppercase"
+						className="mb-4 font-mono text-xs tracking-[0.25em] text-accent uppercase"
 					>
-						Software Developer
+						{t.hero.role}
 					</motion.p>
 
 					<motion.h1
@@ -52,19 +59,18 @@ export default function HeroSection() {
 						initial={{ opacity: 0, y: 20 }}
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.6, delay: 0.35 }}
-						className="text-zinc-400 text-base md:text-lg leading-relaxed mb-10 max-w-xl"
+						className="mb-10 max-w-xl text-base leading-relaxed text-muted md:text-lg"
 					>
-						Full-stack engineer crafting scalable web applications with{' '}
-						<span className="text-sky-400 font-medium">Next.js</span>,{' '}
-						<span className="text-sky-400 font-medium">React</span> &{' '}
-						<span className="text-sky-400 font-medium">TypeScript</span>. Expert
-						in database design (
-						<span className="text-sky-400 font-medium">PostgreSQL</span>,{' '}
-						<span className="text-sky-400 font-medium">MongoDB</span>,{' '}
-						<span className="text-sky-400 font-medium">Neo4j</span>), backend
-						APIs (<span className="text-sky-400 font-medium">Node.js</span>,{' '}
-						<span className="text-sky-400 font-medium">Fastify</span>),
-						containerization & DevOps.
+						{bio.map((part, i) =>
+							i % 2 === 1 ? (
+								// biome-ignore lint/suspicious/noArrayIndexKey: partes fixas do texto
+								<span key={i} className="font-medium text-accent">
+									{part}
+								</span>
+							) : (
+								part
+							),
+						)}
 					</motion.p>
 
 					<motion.div
@@ -75,9 +81,9 @@ export default function HeroSection() {
 					>
 						<a
 							href="#projects"
-							className="group px-6 py-3 bg-sky-400 text-[#05050f] text-sm font-semibold rounded-full hover:bg-sky-300 transition-all duration-200 glow-cyan flex items-center gap-2"
+							className="group glow-cyan flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-contrast transition-all duration-200 hover:opacity-90"
 						>
-							View Projects
+							{t.hero.viewProjects}
 							<svg
 								width="14"
 								height="14"
@@ -93,9 +99,9 @@ export default function HeroSection() {
 						</a>
 						<a
 							href="#contact"
-							className="px-6 py-3 glass text-white text-sm font-medium rounded-full hover:text-sky-400 transition-all duration-200"
+							className="glass rounded-full px-6 py-3 text-sm font-medium text-fg transition-all duration-200 hover:text-accent"
 						>
-							Get in touch
+							{t.hero.getInTouch}
 						</a>
 					</motion.div>
 				</div>
@@ -120,13 +126,13 @@ export default function HeroSection() {
 				transition={{ delay: 1.2 }}
 				className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
 			>
-				<span className="text-zinc-600 text-xs tracking-widest uppercase">
-					scroll
+				<span className="text-xs tracking-widest text-subtle uppercase">
+					{t.hero.scroll}
 				</span>
 				<motion.div
 					animate={{ y: [0, 6, 0] }}
 					transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-					className="w-px h-8 bg-linear-to-b from-sky-400/50 to-transparent"
+					className="h-8 w-px bg-linear-to-b from-accent/50 to-transparent"
 				/>
 			</motion.div>
 		</section>

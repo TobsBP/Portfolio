@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import type { ReactNode } from 'react';
 
 interface FadeUpProps {
@@ -16,9 +16,11 @@ export default function FadeUp({
 	className = '',
 	y = 36,
 }: FadeUpProps) {
+	const reduceMotion = useReducedMotion();
+
 	return (
 		<motion.div
-			initial={{ opacity: 0, y }}
+			initial={{ opacity: 0, y: reduceMotion ? 0 : y }}
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true, margin: '-60px' }}
 			transition={{

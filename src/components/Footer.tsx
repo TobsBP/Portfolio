@@ -1,13 +1,16 @@
+'use client';
+
 import { MdOutlineEmail } from 'react-icons/md';
 import { SiGithub, SiLinkerd } from 'react-icons/si';
+import { usePrefs } from '@/components/PrefsProvider';
 
 const links = [
-	{ href: '#hero', label: 'Home' },
-	{ href: '#projects', label: 'Projects' },
-	{ href: '#skills', label: 'Skills' },
-	{ href: '#about', label: 'About' },
-	{ href: '#contact', label: 'Contact' },
-];
+	{ href: '#hero', key: 'home' },
+	{ href: '#projects', key: 'projects' },
+	{ href: '#skills', key: 'skills' },
+	{ href: '#about', key: 'about' },
+	{ href: '#contact', key: 'contact' },
+] as const;
 
 const socials = [
 	{
@@ -28,25 +31,27 @@ const socials = [
 ];
 
 export default function Footer() {
+	const { t } = usePrefs();
+
 	return (
-		<footer className="mt-4 border-t border-white/[0.06] bg-[#05050f]">
+		<footer className="mt-4 border-t border-line bg-bg">
 			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 py-10 flex flex-col sm:flex-row items-center justify-between gap-8">
 				{/* Nav links */}
 				<nav className="flex gap-6 flex-wrap justify-center">
-					{links.map(({ href, label }) => (
+					{links.map(({ href, key }) => (
 						<a
 							key={href}
 							href={href}
-							className="text-zinc-500 text-sm hover:text-sky-400 transition-colors"
+							className="text-sm text-subtle transition-colors hover:text-accent"
 						>
-							{label}
+							{t.nav[key]}
 						</a>
 					))}
 				</nav>
 
 				{/* Credit */}
-				<p className="text-zinc-600 text-xs order-last sm:order-none">
-					© {new Date().getFullYear()} Tobias — Built with Next.js
+				<p className="order-last text-xs text-subtle sm:order-none">
+					© {new Date().getFullYear()} Tobias — {t.footer.credit}
 				</p>
 
 				{/* Socials */}
@@ -58,7 +63,7 @@ export default function Footer() {
 							target={href.startsWith('mailto') ? undefined : '_blank'}
 							rel="noopener noreferrer"
 							aria-label={label}
-							className="text-zinc-500 hover:text-sky-400 transition-colors"
+							className="text-subtle transition-colors hover:text-accent"
 						>
 							<Icon className="text-xl" />
 						</a>

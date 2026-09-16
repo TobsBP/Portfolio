@@ -20,7 +20,7 @@ export default function TechGrid() {
 								{tech.letter}
 							</span>
 						)}
-						<span className="text-white text-sm font-medium">{tech.name}</span>
+						<span className="text-fg text-sm font-medium">{tech.name}</span>
 					</div>
 				);
 			})}

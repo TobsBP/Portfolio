@@ -1,47 +1,90 @@
 'use client';
 
 import FadeUp from '@/components/FadeUp';
+import { usePrefs } from '@/components/PrefsProvider';
 import ProjectCard from '@/components/ProjectCard';
+import ProjectRow from '@/components/ProjectRow';
 import type { Project } from '@/types';
 
 interface ProjectsSectionProps {
 	projects: Project[];
 }
 
+const isDeployed = (p: Project) => !p.live_url.includes('github.com');
+
 export default function ProjectsSection({ projects }: ProjectsSectionProps) {
+	const { locale, t } = usePrefs();
+	const describe = (p: Project) =>
+		(locale === 'pt' ? p.description_pt : p.description_en) ?? p.description;
+
+	const deployed = projects.filter(isDeployed);
+	const sourceOnly = projects.filter((p) => !isDeployed(p));
+
 	return (
-		<section id="projects" className="relative py-24 px-6 md:px-12 lg:px-24">
-			<div className="max-w-7xl mx-auto">
-				{/* Section header */}
+		<section id="projects" className="relative px-6 py-24 md:px-12 lg:px-24">
+			<div className="mx-auto max-w-7xl">
 				<FadeUp>
-					<div className="section-line mb-12">
+					<div className="section-line mb-14">
 						<div className="flex items-end gap-4">
-							<h2 className="text-white text-4xl md:text-5xl font-serif">
-								Projects
+							<h2 className="font-serif text-4xl text-fg md:text-5xl">
+								{t.projects.title}
 							</h2>
-							<span className="text-sky-400/60 text-sm font-mono pb-1">
-								{projects.length} projects
+							<span className="pb-1 font-mono text-sm text-accent/70">
+								{projects.length}
 							</span>
 						</div>
 					</div>
 				</FadeUp>
 
-				{/* Grid */}
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-					{projects.map((project, i) => (
-						<FadeUp key={project.id} delay={i * 0.1}>
-							<ProjectCard project={project} index={i} />
-						</FadeUp>
-					))}
+				{deployed.length > 0 && (
+					<FadeUp>
+						<div className="mb-6 flex items-baseline gap-3">
+							<h3 className="font-serif text-2xl text-fg">{t.projects.live}</h3>
+							<p className="text-sm text-subtle">
+								{t.projects.liveCount(deployed.length)}
+							</p>
+						</div>
 
-					{projects.length === 0 && (
-						<FadeUp className="col-span-2">
-							<div className="glass rounded-2xl p-12 text-center">
-								<p className="text-zinc-500 text-sm">No projects yet.</p>
-							</div>
-						</FadeUp>
-					)}
-				</div>
+						<div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+							{deployed.map((project) => (
+								<ProjectCard
+									key={project.id}
+									project={project}
+									description={describe(project)}
+								/>
+							))}
+						</div>
+					</FadeUp>
+				)}
+
+				{sourceOnly.length > 0 && (
+					<FadeUp>
+						<div className="mt-20 mb-2 flex items-baseline gap-3">
+							<h3 className="font-serif text-2xl text-fg">
+								{t.projects.source}
+							</h3>
+							<p className="text-sm text-subtle">
+								{t.projects.sourceCount(sourceOnly.length)}
+							</p>
+						</div>
+
+						<div className="grid grid-cols-1 border-b border-line md:grid-cols-2 md:gap-x-10">
+							{sourceOnly.map((project) => (
+								<ProjectRow
+									key={project.id}
+									project={project}
+									description={describe(project)}
+								/>
+							))}
+						</div>
+					</FadeUp>
+				)}
+
+				{projects.length === 0 && (
+					<p className="py-12 text-center text-sm text-subtle">
+						{t.projects.empty}
+					</p>
+				)}
 			</div>
 		</section>
 	);

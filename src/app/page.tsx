@@ -25,9 +25,10 @@ export default async function Home() {
 					borderRadius: '50%',
 					filter: 'blur(100px)',
 					background:
-						'radial-gradient(ellipse, rgba(56,189,248,0.12) 0%, transparent 70%)',
+						'radial-gradient(ellipse, var(--accent-dim) 0%, transparent 70%)',
 					pointerEvents: 'none',
 					zIndex: -1,
+					opacity: 'var(--blob-opacity)',
 				}}
 			/>
 			<div
@@ -41,9 +42,10 @@ export default async function Home() {
 					borderRadius: '50%',
 					filter: 'blur(100px)',
 					background:
-						'radial-gradient(ellipse, rgba(99,102,241,0.1) 0%, transparent 70%)',
+						'radial-gradient(ellipse, var(--accent-dim) 0%, transparent 70%)',
 					pointerEvents: 'none',
 					zIndex: -1,
+					opacity: 'var(--blob-opacity)',
 				}}
 			/>
 
@@ -51,25 +53,25 @@ export default async function Home() {
 
 			{/* Section separator */}
 			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+				<div className="h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
 			</div>
 
 			<ProjectsSection projects={projects} />
 
 			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+				<div className="h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
 			</div>
 
 			<SkillsSection />
 
 			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+				<div className="h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
 			</div>
 
 			<AboutSection />
 
 			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
-				<div className="h-px bg-linear-to-r from-transparent via-sky-400/20 to-transparent" />
+				<div className="h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
 			</div>
 
 			<ContactSection />

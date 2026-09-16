@@ -12,7 +12,7 @@ export async function getProjects(): Promise<Project[]> {
 	try {
 		const [projectsRes, junctionRes] = await Promise.all([
 			fetch(
-				`${BASE}/items/Projects?fields=id,tittle,description,cover_img,live_url`,
+				`${BASE}/items/Projects?fields=id,tittle,description,description_pt,description_en,cover_img,live_url`,
 			),
 			fetch(
 				`${BASE}/items/Projects_Technologies?fields=Projects_id,Technologies_id.*&limit=-1`,
