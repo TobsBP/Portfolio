@@ -5,6 +5,9 @@ import ProjectsSection from '@/components/sections/ProjectsSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import { getProjects } from '@/services/projects';
 
+// Revalida a cada 5 min: os projetos vêm do Directus e mudam sem novo deploy.
+export const revalidate = 300;
+
 export default async function Home() {
 	const projects = await getProjects();
 
