@@ -1,13 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Highlight from '@/components/Highlight';
 import { usePrefs } from '@/components/PrefsProvider';
 import HeroCode from '../HeroCode';
 
 export default function HeroSection() {
 	const { t } = usePrefs();
-	// partes impares do split sao os termos entre chaves, destacados no acento
-	const bio = t.hero.bio.split(/\{([^}]+)\}/g);
 
 	return (
 		<section
@@ -61,16 +60,7 @@ export default function HeroSection() {
 						transition={{ duration: 0.6, delay: 0.35 }}
 						className="mb-10 max-w-xl text-base leading-relaxed text-muted md:text-lg"
 					>
-						{bio.map((part, i) =>
-							i % 2 === 1 ? (
-								// biome-ignore lint/suspicious/noArrayIndexKey: partes fixas do texto
-								<span key={i} className="font-medium text-accent">
-									{part}
-								</span>
-							) : (
-								part
-							),
-						)}
+						<Highlight text={t.hero.bio} />
 					</motion.p>
 
 					<motion.div

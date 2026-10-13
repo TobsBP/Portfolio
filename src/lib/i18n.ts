@@ -8,18 +8,94 @@ const dictionaries = {
 	en: {
 		nav: {
 			home: 'Home',
+			experience: 'Experience',
 			projects: 'Projects',
 			skills: 'Skills',
 			about: 'About',
 			contact: 'Contact',
 		},
 		hero: {
-			role: 'Software Developer',
+			role: 'Development Manager · Full-stack',
 			// {texto} vira destaque em cor de acento
-			bio: 'Full-stack engineer crafting scalable web applications with {Next.js}, {React} & {TypeScript}. Expert in database design ({PostgreSQL}, {MongoDB}, {Neo4j}), backend APIs ({Node.js}, {Fastify}), containerization & DevOps.',
+			bio: "Development manager at {Upvox}, where I built a platform serving {600+ active customers} end to end, and full-stack at {Mulher em Forma}, an app with 1.1M+ students. Full-stack with {Next.js}, {TypeScript}, {Node.js}, {PostgreSQL} and {Supabase}, and award winner at Inatel's FETIN with {OneFit}.",
 			viewProjects: 'View projects',
 			getInTouch: 'Get in touch',
 			scroll: 'scroll',
+		},
+		experience: {
+			title: 'Experience',
+			now: 'Now',
+			jobs: [
+				{
+					company: 'Upvox',
+					role: 'Development Manager',
+					metric: { value: '600+', label: 'active customers in production' },
+					summary:
+						'I lead development at Upvox, the course and tools platform behind {Profissão Laser}, and built it end to end, back end and front end. It runs in production with {600+ active customers}, Stripe subscriptions and Redis.',
+					highlights: [
+						'Multi-tenant platform: API gateway, shared Zod contracts and Firebase Auth',
+						'Stripe subscriptions plus usage credits for paid tools',
+						'AI tools for laser work: vectorizing, DXF export, background removal',
+						'One design system for Next.js and Expo (React Native Web + NativeWind)',
+					],
+					stack: [
+						'Next.js',
+						'TypeScript',
+						'Node.js',
+						'Fastify',
+						'PostgreSQL',
+						'Supabase',
+						'Drizzle',
+						'Redis',
+						'Stripe',
+					],
+					link: 'https://www.profissaolaser.com.br/',
+					linkLabel: 'profissaolaser.com.br',
+					image: '/profissao-laser.jpg',
+				},
+				{
+					company: 'Mulher em Forma',
+					role: 'Junior Full-stack Developer',
+					metric: { value: '1.1M+', label: 'students on the platform' },
+					summary:
+						"Full-stack across the {Mulher em Forma} ecosystem, a women's fitness app with {1.1 million+ students} and 50k+ downloads on Google Play: React Native app, GraphQL BFF and Node.js microservices.",
+					highlights: [
+						'Customer-support backoffice and the BFF behind it',
+						'AI ticket triage: classification and RAG with Gemini + Qdrant, wired to Jira',
+						'App APIs: GraphQL BFF, social, push notifications and the workout core',
+					],
+					stack: [
+						'React Native',
+						'TypeScript',
+						'Node.js',
+						'Fastify',
+						'GraphQL',
+						'PostgreSQL',
+						'Prisma',
+						'MongoDB',
+						'Redis',
+						'Firebase',
+					],
+					link: 'https://mulheremforma.com',
+					linkLabel: 'mulheremforma.com',
+					image: '/mulher-em-forma.jpg',
+				},
+			],
+		},
+		featured: {
+			label: 'Featured project',
+			title: 'OneFit',
+			summary:
+				'Your whole health team in one app: personal trainer, nutritionist, personal chef and physiotherapist working on the same plan. Mobile app in Expo, web dashboards per role, a GraphQL API over Strapi, a RAG assistant that drafts workouts and diets for professionals to review, and video consultations.',
+			event: '45th FETIN · Inatel · 2026',
+			awards: [
+				'1st place · Social Impact',
+				'2nd place · Technical Complexity',
+				'Inatel Startups Award',
+			],
+			team: 'With José Roberto Pereira Neto and João Victor Ferreira Fraga',
+			visit: 'Visit OneFit',
+			source: 'Inatel news',
 		},
 		projects: {
 			title: 'Projects',
@@ -69,6 +145,16 @@ const dictionaries = {
 					description:
 						'Expanded my skills with modern frameworks, tools and best practices.',
 				},
+				{
+					title: 'Development manager at Upvox',
+					description:
+						'Built Profissão Laser end to end: 600+ active customers, Stripe and Redis.',
+				},
+				{
+					title: 'OneFit awarded at the 45th FETIN',
+					description:
+						'1st in Social Impact, 2nd in Technical Complexity and the Inatel Startups Award.',
+				},
 			],
 			facts: [
 				{
@@ -111,17 +197,93 @@ const dictionaries = {
 	pt: {
 		nav: {
 			home: 'Início',
+			experience: 'Experiência',
 			projects: 'Projetos',
 			skills: 'Tecnologias',
 			about: 'Sobre',
 			contact: 'Contato',
 		},
 		hero: {
-			role: 'Desenvolvedor de software',
-			bio: 'Engenheiro full-stack construindo aplicações web escaláveis com {Next.js}, {React} e {TypeScript}. Modelagem de banco de dados ({PostgreSQL}, {MongoDB}, {Neo4j}), APIs de backend ({Node.js}, {Fastify}), containers e DevOps.',
+			role: 'Gerente de desenvolvimento · Full-stack',
+			bio: 'Gerente de desenvolvimento na {Upvox}, onde construí de ponta a ponta uma plataforma com {mais de 600 clientes ativos}, e full-stack na {Mulher em Forma}, app com mais de 1,1 milhão de alunas. Full-stack com {Next.js}, {TypeScript}, {Node.js}, {PostgreSQL} e {Supabase}, e premiado na FETIN do Inatel com o {OneFit}.',
 			viewProjects: 'Ver projetos',
 			getInTouch: 'Falar comigo',
 			scroll: 'role',
+		},
+		experience: {
+			title: 'Experiência',
+			now: 'Atual',
+			jobs: [
+				{
+					company: 'Upvox',
+					role: 'Gerente de desenvolvimento',
+					metric: { value: '600+', label: 'clientes ativos em produção' },
+					summary:
+						'Lidero o desenvolvimento da Upvox, a plataforma de cursos e ferramentas por trás da {Profissão Laser}, e construí tudo de ponta a ponta, back-end e front-end. Está em produção com {mais de 600 clientes ativos}, assinaturas via Stripe e Redis.',
+					highlights: [
+						'Plataforma multi-tenant: API gateway, contratos Zod compartilhados e Firebase Auth',
+						'Assinaturas no Stripe e créditos por uso das ferramentas pagas',
+						'Ferramentas com IA para o laser: vetorização, exportação DXF, remoção de fundo',
+						'Um design system para Next.js e Expo (React Native Web + NativeWind)',
+					],
+					stack: [
+						'Next.js',
+						'TypeScript',
+						'Node.js',
+						'Fastify',
+						'PostgreSQL',
+						'Supabase',
+						'Drizzle',
+						'Redis',
+						'Stripe',
+					],
+					link: 'https://www.profissaolaser.com.br/',
+					linkLabel: 'profissaolaser.com.br',
+					image: '/profissao-laser.jpg',
+				},
+				{
+					company: 'Mulher em Forma',
+					role: 'Desenvolvedor full-stack júnior',
+					metric: { value: '1,1 mi+', label: 'alunas na plataforma' },
+					summary:
+						'Full-stack no ecossistema da {Mulher em Forma}, app de fitness feminino com {mais de 1,1 milhão de alunas} e 50 mil+ downloads na Google Play: app React Native, BFF GraphQL e microsserviços em Node.js.',
+					highlights: [
+						'Backoffice de atendimento e o BFF que o alimenta',
+						'Triagem de tickets com IA: classificação e RAG com Gemini + Qdrant, integrada ao Jira',
+						'APIs do app: BFF GraphQL, social, notificações push e core de treinos',
+					],
+					stack: [
+						'React Native',
+						'TypeScript',
+						'Node.js',
+						'Fastify',
+						'GraphQL',
+						'PostgreSQL',
+						'Prisma',
+						'MongoDB',
+						'Redis',
+						'Firebase',
+					],
+					link: 'https://mulheremforma.com',
+					linkLabel: 'mulheremforma.com',
+					image: '/mulher-em-forma.jpg',
+				},
+			],
+		},
+		featured: {
+			label: 'Projeto em destaque',
+			title: 'OneFit',
+			summary:
+				'Seu time de saúde inteiro no mesmo app: personal, nutricionista, personal chef e fisioterapeuta trabalhando sobre o mesmo plano. App mobile em Expo, painéis web por papel, API GraphQL sobre Strapi, assistente RAG que rascunha treinos e dietas para o profissional revisar e consultas por vídeo.',
+			event: '45ª FETIN · Inatel · 2026',
+			awards: [
+				'1º lugar · Impacto Social',
+				'2º lugar · Complexidade Técnica',
+				'Prêmio Inatel Startups',
+			],
+			team: 'Com José Roberto Pereira Neto e João Victor Ferreira Fraga',
+			visit: 'Conhecer o OneFit',
+			source: 'Notícia do Inatel',
 		},
 		projects: {
 			title: 'Projetos',
@@ -171,6 +333,16 @@ const dictionaries = {
 					title: 'Crescendo como desenvolvedor',
 					description:
 						'Ampliei o repertório com frameworks modernos, ferramentas e boas práticas.',
+				},
+				{
+					title: 'Gerente de desenvolvimento na Upvox',
+					description:
+						'Construí a Profissão Laser de ponta a ponta: mais de 600 clientes ativos, Stripe e Redis.',
+				},
+				{
+					title: 'OneFit premiado na 45ª FETIN',
+					description:
+						'1º em Impacto Social, 2º em Complexidade Técnica e Prêmio Inatel Startups.',
 				},
 			],
 			facts: [

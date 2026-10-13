@@ -8,6 +8,7 @@ import PrefsToggles from '@/components/PrefsToggles';
 
 const links = [
 	{ href: '#hero', key: 'home' },
+	{ href: '#experience', key: 'experience' },
 	{ href: '#projects', key: 'projects' },
 	{ href: '#skills', key: 'skills' },
 	{ href: '#about', key: 'about' },

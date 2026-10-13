@@ -1,5 +1,6 @@
 import AboutSection from '@/components/sections/AboutSection';
 import ContactSection from '@/components/sections/ContactSection';
+import ExperienceSection from '@/components/sections/ExperienceSection';
 import HeroSection from '@/components/sections/HeroSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import SkillsSection from '@/components/sections/SkillsSection';
@@ -52,6 +53,12 @@ export default async function Home() {
 			<HeroSection />
 
 			{/* Section separator */}
+			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
+				<div className="h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
+			</div>
+
+			<ExperienceSection />
+
 			<div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24">
 				<div className="h-px bg-linear-to-r from-transparent via-accent/25 to-transparent" />
 			</div>

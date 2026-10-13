@@ -4,7 +4,16 @@ import Image from 'next/image';
 import FadeUp from '@/components/FadeUp';
 import { usePrefs } from '@/components/PrefsProvider';
 
-const timelineYears = ['2019', '2020', '2023', '2024', '2024', '2025'];
+const timelineYears = [
+	'2019',
+	'2020',
+	'2023',
+	'2024',
+	'2024',
+	'2025',
+	'2026',
+	'2026',
+];
 const factIcons = ['🤖', '🔐', '⚡', '🛠️', '🌐', '📈'];
 
 export default function AboutSection() {

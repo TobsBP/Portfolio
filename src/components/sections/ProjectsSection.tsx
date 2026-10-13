@@ -1,6 +1,7 @@
 'use client';
 
 import FadeUp from '@/components/FadeUp';
+import FeaturedProject from '@/components/FeaturedProject';
 import { usePrefs } from '@/components/PrefsProvider';
 import ProjectCard from '@/components/ProjectCard';
 import ProjectRow from '@/components/ProjectRow';
@@ -30,10 +31,14 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
 								{t.projects.title}
 							</h2>
 							<span className="pb-1 font-mono text-sm text-accent/70">
-								{projects.length}
+								{projects.length + 1}
 							</span>
 						</div>
 					</div>
+				</FadeUp>
+
+				<FadeUp>
+					<FeaturedProject />
 				</FadeUp>
 
 				{deployed.length > 0 && (
